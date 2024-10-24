@@ -56,8 +56,8 @@
         nav ul li {
             display: inline-block;
             width: 100%;
-        text-align: center;
-        max-width: 250px; /* Ensures menu items are not too wide */
+            text-align: center;
+            max-width: 250px; /* Ensures menu items are not too wide */
             box-sizing: border-box;
         }
         nav ul li a {
@@ -124,7 +124,12 @@
         }
         @media (max-width: 600px) {
             nav ul {
-                flex-direction: column; /* Stack menu items vertically on small screens */
+                flex-direction: column; /* Stack menu items vertically */
+                align-items: center;    /* Ensure menu items are centered */
+            }
+            nav ul li {
+                width: 100%; /* Make sure the menu item takes up full width */
+                max-width: none; /* Remove the max-width constraint on small screens */
             }
             h1 {
                 font-size: 24px;
