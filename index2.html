@@ -54,13 +54,20 @@
             justify-content: space-around;
         }
         nav ul li {
-            display: inline;
+            display: inline-block;
+            width: 100%;
+            max-width: 250px; /* Ensures menu items are not too wide */
+            box-sizing: border-box;
         }
         nav ul li a {
             color: white;
             text-decoration: none;
             padding: 14px 20px;
             display: block;
+            text-align: center;
+            white-space: nowrap; /* Prevents text from wrapping */
+            overflow: hidden; /* Ensures no overflow */
+            text-overflow: ellipsis; /* Adds "..." if text is too long */
         }
         nav ul li a:hover {
             background-color: #575757;
