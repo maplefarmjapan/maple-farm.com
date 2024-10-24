@@ -17,6 +17,22 @@
             min-height: 100vh;
             background-color: #f0f0f0;
         }
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;  /* Limits the maximum width of the iframe */
+            padding-bottom: 56.25%; /* 16:9 aspect ratio (height/width ratio = 9/16 = 56.25%) */
+            height: 0;
+            overflow: hidden;
+        }
+        .iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
         .container {
             max-width: 1200px;
             width: 100%;
@@ -188,14 +204,18 @@
         <section id="section2">
             <h2>Location and Map</h2>
             <p>This is the content for section 2. Place more content here as needed.</p>
-	    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2886.7796094681594!2d142.4487049764107!3d43.65275347110216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f0cc3a481c7bcb5%3A0x23ba5a35d4c86629!2sMaple%20Farm!5e0!3m2!1sen!2sjp!4v1729733455200!5m2!1sen!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+	    <div class="iframe-container">
+	      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2886.7796094681594!2d142.4487049764107!3d43.65275347110216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f0cc3a481c7bcb5%3A0x23ba5a35d4c86629!2sMaple%20Farm!5e0!3m2!1sen!2sjp!4v1729733455200!5m2!1sen!2sjp" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+	      </div>
         </section>
 
         <!-- Section 3 -->
         <section id="section3">
             <h2>Reservations</h2>
             <p>This is the content for section 3. Feel free to customize this section with relevant information.</p>
-	    <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=Asia%2FTokyo&title=Maple%20Farm%20Bookings&src=ZW4uamFwYW5lc2UjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&src=c2VoMHFwNWxhcGI3NWVsZmlidTQ3bGRncGVxNW4wbmtAaW1wb3J0LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%230B8043&color=%234285F4" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+	    <div class="iframe-container">
+	      <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=Asia%2FTokyo&title=Maple%20Farm%20Bookings&src=ZW4uamFwYW5lc2UjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&src=c2VoMHFwNWxhcGI3NWVsZmlidTQ3bGRncGVxNW4wbmtAaW1wb3J0LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%230B8043&color=%234285F4" style="border:solid 1px #777" frameborder="0" scrolling="no"></iframe>
+	      </div>
         </section>
 
         <!-- Section 4 -->
