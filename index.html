@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Maple Farm</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;  /* Limits the maximum width of the iframe */
+            padding-bottom: 56.25%; /* 16:9 aspect ratio (height/width ratio = 9/16 = 56.25%) */
+            height: 0;
+            overflow: hidden;
+        }
+        .iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        nav {
+            width: 100%;
+            background-color: #333;
+            overflow: hidden;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: space-around;
+        }
+        nav ul li {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            max-width: 250px; /* Ensures menu items are not too wide */
+            box-sizing: border-box;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            display: block;
+            text-align: center;
+            white-space: nowrap; /* Prevents text from wrapping */
+            overflow: hidden; /* Ensures no overflow */
+            text-overflow: ellipsis; /* Adds "..." if text is too long */
+        }
+        nav ul li a:hover {
+            background-color: #575757;
+        }
+        section {
+            padding: 60px 0;
+            margin: 20px 0;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin: 0 0 20px;
+            text-align: center;
+        }
+        h2 {
+            text-align: center;
+        }
+        p {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .carousel {
+            position: relative;
+            max-width: 100%;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel-images img {
+            max-width: 100%;
+            height: auto;
+        }
+        .carousel button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .carousel button.prev {
+            left: 10px;
+        }
+        .carousel button.next {
+            right: 10px;
+        }
+        @media (max-width: 600px) {
+            nav ul {
+                flex-direction: column; /* Stack menu items vertically */
+                align-items: center;    /* Ensure menu items are centered */
+            }
+            nav ul li {
+                width: 100%; /* Make sure the menu item takes up full width */
+                max-width: none; /* Remove the max-width constraint on small screens */
+            }
+            h1 {
+                font-size: 24px;
+            }
+            p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Maple Farm</h1>
+        <p>Welcome to Maple Farm.</p>
+	<p>We hope that you will discover lots of useful information here about Maple Farm and the surrounding area.</p>
+        <!-- Navigation Menu -->
+        <nav>
+            <ul>
+                <li><a href="#section1">Photos</a></li>
+                <li><a href="#section2">Location and Map</a></li>
+                <li><a href="#section3">Reservations</a></li>
+                <li><a href="#section4">Food & Drink</a></li>
+            </ul>
+            <ul>
+                <li><a href="#section5">Attractions</a></li>
+                <li><a href="#section6">Useful Info</a></li>
+                <li><a href="#section7">Transport</a></li>
+                <li><a href="#section8">About the house</a></li>
+            </ul>
+        </nav>
+
+        <!-- Section 1 -->
+        <section id="section1">
+          <h2>Photos</h2>
+          <div class="carousel">
+            <div class="carousel-images">
+	      <img src="images/fe112dfc-7cf6-476f-b81a-2c6f9d828187.jpg" alt="fe112dfc-7cf6-476f-b81a-2c6f9d828187.jpg">
+	      <img src="images/fd2f87ba-d790-4bdc-a419-ecbdc0b834e1.jpeg" alt="fd2f87ba-d790-4bdc-a419-ecbdc0b834e1.jpeg">
+	      <img src="images/f6dd4f93-653c-44e5-babb-069daba5338e.jpg" alt="f6dd4f93-653c-44e5-babb-069daba5338e.jpg">
+	      <img src="images/f5cffdce-f655-4048-9a44-252d77c3e6e3.jpg" alt="f5cffdce-f655-4048-9a44-252d77c3e6e3.jpg">
+	      <img src="images/f4c4b599-b5d0-45b8-8b64-a22decaceb63.jpg" alt="f4c4b599-b5d0-45b8-8b64-a22decaceb63.jpg">
+	      <img src="images/f12b06f2-e5a6-4c3d-8d16-c0b6cfd404cc.jpeg" alt="f12b06f2-e5a6-4c3d-8d16-c0b6cfd404cc.jpeg">
+	      <img src="images/f11e08a0-e399-4910-9e33-f83c94175817.jpg" alt="f11e08a0-e399-4910-9e33-f83c94175817.jpg">
+	      <img src="images/f0ea948a-9a9f-4ded-9319-9eb9cc57ec5d.webp" alt="f0ea948a-9a9f-4ded-9319-9eb9cc57ec5d.webp">
+	      <img src="images/ee45c22c-80f2-4803-bb48-6a02777a6050.jpg" alt="ee45c22c-80f2-4803-bb48-6a02777a6050.jpg">
+	      <img src="images/e9c96d29-1c45-42b0-88df-579d4e42ed2e.webp" alt="e9c96d29-1c45-42b0-88df-579d4e42ed2e.webp">
+	      <img src="images/d926f5e7-a1f6-4010-a82f-5ea8ecdbbf8f.jpeg" alt="d926f5e7-a1f6-4010-a82f-5ea8ecdbbf8f.jpeg">
+	      <img src="images/d61a257b-d4d1-45e2-a6dd-2f24ac743b6b.webp" alt="d61a257b-d4d1-45e2-a6dd-2f24ac743b6b.webp">
+	      <img src="images/d52dec9c-f4f9-4572-b46e-c6baeda528ca.jpg" alt="d52dec9c-f4f9-4572-b46e-c6baeda528ca.jpg">
+	      <img src="images/cb80f5f5-1e13-4c38-9e13-44abc265056a.jpeg" alt="cb80f5f5-1e13-4c38-9e13-44abc265056a.jpeg">
+	      <img src="images/c9b002ae-98d1-4aa5-b9ac-eaaace8c02a7.jpg" alt="c9b002ae-98d1-4aa5-b9ac-eaaace8c02a7.jpg">
+	      <img src="images/c987c1a2-3a0c-4579-9779-10bca99b73cd.jpeg" alt="c987c1a2-3a0c-4579-9779-10bca99b73cd.jpeg">
+	      <img src="images/c711eebc-da5d-4fe9-b4c9-f99f4089b6e3.webp" alt="c711eebc-da5d-4fe9-b4c9-f99f4089b6e3.webp">
+	      <img src="images/c5354c26-cd2d-4771-addf-e08492888c8d.jpeg" alt="c5354c26-cd2d-4771-addf-e08492888c8d.jpeg">
+	      <img src="images/c4b1984c-a288-478a-89bd-3a7c54054c78.jpg" alt="c4b1984c-a288-478a-89bd-3a7c54054c78.jpg">
+	      <img src="images/c1019eaa-b6eb-4940-9695-8d6005469621.jpg" alt="c1019eaa-b6eb-4940-9695-8d6005469621.jpg">
+	      <img src="images/bd2147c5-e080-4937-ab7e-bd0f4c8a9285.jpeg" alt="bd2147c5-e080-4937-ab7e-bd0f4c8a9285.jpeg">
+	      <img src="images/b8e5ae87-951f-46d5-9988-f5181e23fd42.jpeg" alt="b8e5ae87-951f-46d5-9988-f5181e23fd42.jpeg">
+	      <img src="images/b8c78521-38cb-4737-86c7-9418a09e8872.webp" alt="b8c78521-38cb-4737-86c7-9418a09e8872.webp">
+	      <img src="images/b8bb0358-6ada-44a5-bfe7-39fb176b0b6b.jpg" alt="b8bb0358-6ada-44a5-bfe7-39fb176b0b6b.jpg">
+	      <img src="images/b5c00fd8-ca19-4bc5-8874-6be4d2b6f1cd.jpg" alt="b5c00fd8-ca19-4bc5-8874-6be4d2b6f1cd.jpg">
+	      <img src="images/b230acf1-713e-4540-a1fc-7ef71a479f94.jpg" alt="b230acf1-713e-4540-a1fc-7ef71a479f94.jpg">
+	      <img src="images/b1877c84-9eec-4ce4-a148-40db87e6e752.jpeg" alt="b1877c84-9eec-4ce4-a148-40db87e6e752.jpeg">
+	      <img src="images/b180c8e1-19c0-48bc-8d56-871d592ce120.jpeg" alt="b180c8e1-19c0-48bc-8d56-871d592ce120.jpeg">
+	      <img src="images/aef1b532-6473-4529-ac1d-d300e5ade52a.jpeg" alt="aef1b532-6473-4529-ac1d-d300e5ade52a.jpeg">
+	      <img src="images/a78c4f38-b42b-4d74-8f37-8a452f743e61.webp" alt="a78c4f38-b42b-4d74-8f37-8a452f743e61.webp">
+	      <img src="images/96e4f073-cd33-4fce-9cc1-18acdecd1740.webp" alt="96e4f073-cd33-4fce-9cc1-18acdecd1740.webp">
+	      <img src="images/91b6b434-865f-48da-9474-96569ccd2ecf.jpg" alt="91b6b434-865f-48da-9474-96569ccd2ecf.jpg">
+	      <img src="images/8138667d-d01a-408e-8e51-bdcde503b582.jpg" alt="8138667d-d01a-408e-8e51-bdcde503b582.jpg">
+	      <img src="images/7d8c1d88-62b5-4d74-98eb-0487236a57b6.webp" alt="7d8c1d88-62b5-4d74-98eb-0487236a57b6.webp">
+	      <img src="images/6c004ffa-2f09-4bf1-8213-f7f8efc175b7.jpg" alt="6c004ffa-2f09-4bf1-8213-f7f8efc175b7.jpg">
+	      <img src="images/646d122a-8fdc-413b-afa0-bb702a0347b1.jpg" alt="646d122a-8fdc-413b-afa0-bb702a0347b1.jpg">
+	      <img src="images/615ffaae-4423-44c5-84ab-84cd3ce304be.webp" alt="615ffaae-4423-44c5-84ab-84cd3ce304be.webp">
+	      <img src="images/5ffc134c-9331-4f56-bed3-ec2d2fa0b947.jpg" alt="5ffc134c-9331-4f56-bed3-ec2d2fa0b947.jpg">
+	      <img src="images/5b96decf-7311-4375-97dc-8110cdf0d31f.webp" alt="5b96decf-7311-4375-97dc-8110cdf0d31f.webp">
+	      <img src="images/507f4067-1178-4637-b063-1c62677c48f3.jpeg" alt="507f4067-1178-4637-b063-1c62677c48f3.jpeg">
+	      <img src="images/4de9cee8-c40b-4a5f-9d46-b37577e35123.jpg" alt="4de9cee8-c40b-4a5f-9d46-b37577e35123.jpg">
+	      <img src="images/3eb5af66-1dc5-409a-ac07-70f8b0301078.jpeg" alt="3eb5af66-1dc5-409a-ac07-70f8b0301078.jpeg">
+	      <img src="images/3c05ec73-6f4c-49b2-a901-dd90ce9ce786.jpg" alt="3c05ec73-6f4c-49b2-a901-dd90ce9ce786.jpg">
+	      <img src="images/3857d43f-206c-484c-8628-7c6b8f38e13d.webp" alt="3857d43f-206c-484c-8628-7c6b8f38e13d.webp">
+	      <img src="images/33e051d0-bcf4-4ef4-90cf-2963c644c224.jpeg" alt="33e051d0-bcf4-4ef4-90cf-2963c644c224.jpeg">
+	      <img src="images/21f3671f-8664-4c16-beb9-c5d83b5ae309.jpeg" alt="21f3671f-8664-4c16-beb9-c5d83b5ae309.jpeg">
+	      <img src="images/20fbb077-b9b0-4c43-8669-3e2304e9ed74.webp" alt="20fbb077-b9b0-4c43-8669-3e2304e9ed74.webp">
+	      <img src="images/187c229d-316d-4975-b55c-37172aa86e1a.jpeg" alt="187c229d-316d-4975-b55c-37172aa86e1a.jpeg">
+	      <img src="images/14460dcf-2c80-4a32-8422-6c39a00dfc01.webp" alt="14460dcf-2c80-4a32-8422-6c39a00dfc01.webp">
+	      <img src="images/11dfea35-b25a-43e3-86ce-37048820c2b5.jpg" alt="11dfea35-b25a-43e3-86ce-37048820c2b5.jpg">
+	      <img src="images/1121fd36-e3f8-49f0-997f-03619150fe52.jpg" alt="1121fd36-e3f8-49f0-997f-03619150fe52.jpg">
+	      <img src="images/0d8f78a8-cfb9-44a5-bf8a-d4be209156c4.jpg" alt="0d8f78a8-cfb9-44a5-bf8a-d4be209156c4.jpg">
+            </div>
+            <button class="prev" onclick="prevSlide()">&#10094;</button>
+            <button class="next" onclick="nextSlide()">&#10095;</button>
+       </section>
+
+        <!-- Section 2 -->
+        <section id="section2">
+            <h2>Location and Map</h2>
+            <p>This is the content for section 2. Place more content here as needed.</p>
+	    <div class="iframe-container">
+	      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2886.7796094681594!2d142.4487049764107!3d43.65275347110216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f0cc3a481c7bcb5%3A0x23ba5a35d4c86629!2sMaple%20Farm!5e0!3m2!1sen!2sjp!4v1729733455200!5m2!1sen!2sjp" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+	      </div>
+        </section>
+
+        <!-- Section 3 -->
+        <section id="section3">
+            <h2>Reservations</h2>
+            <p>This is the content for section 3. Feel free to customize this section with relevant information.</p>
+	    <div class="iframe-container">
+	      <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=Asia%2FTokyo&showPrint=0&showCalendars=0&title=Maple%20Farm%20Availability&src=ZW4uamFwYW5lc2UjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&src=bmZocjRmMGdicThpZmxqMHNpZnRtbWQyYjBoNnJvczlAaW1wb3J0LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%230B8043&color=%23795548" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+	    </div>
+        </section>
+
+        <!-- Section 4 -->
+        <section id="section4">
+            <h2>Food & Drink</h2>
+            <p>This is the content for section 4. You can include any details you want here.</p>
+        </section>
+
+        <!-- Section5  -->
+        <section id="section5">
+            <h2>Attractions</h2>
+            <p>This is the content for section . You can include any details you want here.</p>
+        </section>
+	
+	<!-- Section 6 -->
+        <section id="section6">
+            <h2>Useful Info</h2>
+            <p>This is the content for section . You can include any details you want here.</p>
+        </section>
+
+        <!-- Section 7 -->
+        <section id="section7">
+            <h2>Transport</h2>
+            <p>This is the content for section . You can include any details you want here.</p>
+        </section>
+
+        <!-- Section 8 -->
+        <section id="section8">
+            <h2>About the house</h2>
+            <p>This is the content for section . You can include any details you want here.</p>
+        </section>
+	
+	</div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-images img');
+
+        function showSlide(index) {
+            if (index >= slides.length) currentSlide = 0;
+            if (index < 0) currentSlide = slides.length - 1;
+            const offset = -currentSlide * 100;
+            document.querySelector('.carousel-images').style.transform = `translateX(${offset}%)`;
+        }
+
+        function nextSlide() {
+            currentSlide++;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide--;
+            showSlide(currentSlide);
+        }
+
+        // Initialize
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
