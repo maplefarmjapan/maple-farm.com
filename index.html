@@ -60,6 +60,7 @@
             padding-bottom: 56.25%; /* 16:9 aspect ratio (height/width ratio = 9/16 = 56.25%) */
             height: 0;
             overflow: hidden;
+            z-index: 1;
         }
         .iframe-container iframe {
             position: absolute;
@@ -408,6 +409,18 @@
 	    </div>
         </section>
 
+        <!-- Alternative Booking Section -->
+        <section id="section3b">
+            <h2>Direct Booking</h2>
+            <p style="text-align: center; margin-bottom: 30px;">Book directly through our reservation system for the best rates and instant confirmation.</p>
+            <div style="text-align: center;">
+                <a href="https://worldwidebase.airhost.co/en/houses/527325" target="_blank" rel="noopener noreferrer" style="display: inline-block; background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); color: white; text-decoration: none; padding: 15px 30px; border-radius: 8px; font-size: 18px; font-weight: 600; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: all 0.3s ease;">
+                    📅 Check Availability & Book Now
+                </a>
+            </div>
+            <p style="font-size: 14px; color: var(--text-secondary); text-align: center; margin-top: 15px;">You'll be redirected to our secure booking platform to complete your reservation.</p>
+        </section>
+
         <!-- Section 4 -->
         <section id="section4">
             <h2>Food & Drink</h2>
@@ -486,11 +499,47 @@
             console.log('Calendar loaded with height:', height, 'Mobile:', isMobile);
         }
 
-        // Intersection Observer for calendar lazy loading
+        // Background loading with idle callback
+        let calendarLoaded = false;
+        let mapLoaded = false;
+        
+        function loadMapInBackground() {
+            if (mapLoaded) return;
+            // Map is already embedded in HTML, just mark as loaded
+            mapLoaded = true;
+            console.log('Map marked as loaded');
+        }
+        
+        function loadCalendarInBackground() {
+            if (calendarLoaded) return;
+            loadCalendar();
+            calendarLoaded = true;
+            console.log('Calendar loaded in background');
+        }
+        
+        function scheduleBackgroundLoading() {
+            // Use requestIdleCallback for low priority loading, fallback to setTimeout
+            const scheduleIdle = window.requestIdleCallback || ((cb) => setTimeout(cb, 1));
+            
+            // Load map first (lighter weight - already in HTML)
+            scheduleIdle(() => {
+                loadMapInBackground();
+            });
+            
+            // Load calendar after a delay (heavier weight)
+            scheduleIdle(() => {
+                setTimeout(() => {
+                    loadCalendarInBackground();
+                }, 2000); // Wait 2 seconds after idle
+            });
+        }
+        
+        // Intersection Observer for immediate loading when viewed (fallback)
         const calendarObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
+                if (entry.isIntersecting && !calendarLoaded) {
                     loadCalendar();
+                    calendarLoaded = true;
                     calendarObserver.unobserve(entry.target);
                 }
             });
@@ -690,10 +739,13 @@
         document.addEventListener('DOMContentLoaded', () => {
             initDarkMode(); // Initialize dark mode first
             showSlide(currentSlide);
+            
+            // Set up intersection observer as fallback
             const calendarContainer = document.getElementById('calendar-container');
             if (calendarContainer) {
                 calendarObserver.observe(calendarContainer);
             }
+            
             updateActiveNav();
             
             // Add touch and wheel listeners to carousel
@@ -703,6 +755,9 @@
                 carousel.addEventListener('touchend', handleTouchEnd, { passive: true });
                 carousel.addEventListener('wheel', handleWheel, { passive: false });
             }
+            
+            // Schedule background loading after initial page load
+            scheduleBackgroundLoading();
         });
     </script>
 </body>
