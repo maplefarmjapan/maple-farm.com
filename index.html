@@ -6,6 +6,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Maple Farm</title>
     <style>
+        :root {
+            /* Light mode colors */
+            --bg-primary: #f0f0f0;
+            --bg-secondary: white;
+            --bg-section: #fff;
+            --text-primary: #333;
+            --text-secondary: #666;
+            --border-color: #ddd;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --nav-bg: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            --nav-hover: rgba(255, 255, 255, 0.1);
+            --nav-active: rgba(255, 255, 255, 0.2);
+            --carousel-bg: #f8f8f8;
+            --calendar-bg: #f5f5f5;
+            --button-bg: rgba(0, 0, 0, 0.5);
+        }
+
+        [data-theme="dark"] {
+            /* Dark mode colors */
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --bg-section: #2d2d2d;
+            --text-primary: #e0e0e0;
+            --text-secondary: #b0b0b0;
+            --border-color: #404040;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --nav-bg: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+            --nav-hover: rgba(255, 255, 255, 0.15);
+            --nav-active: rgba(255, 255, 255, 0.25);
+            --carousel-bg: #3d3d3d;
+            --calendar-bg: #3d3d3d;
+            --button-bg: rgba(0, 0, 0, 0.7);
+        }
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -15,7 +49,9 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background-color: #f0f0f0;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         .iframe-container {
             position: relative;
@@ -38,17 +74,18 @@
             width: 100%;
             padding: 10px;
             box-sizing: border-box;
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: var(--bg-secondary);
+            box-shadow: 0 4px 8px var(--shadow-color);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
         nav {
             width: 100%;
-            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            background: var(--nav-bg);
             overflow: visible;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 4px var(--shadow-color);
             transition: all 0.3s ease;
         }
         nav ul {
@@ -80,16 +117,17 @@
             font-weight: 500;
         }
         nav ul li a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: var(--nav-hover);
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 8px var(--shadow-color);
         }
         section {
             padding: 60px 0;
             margin: 20px 0;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: var(--bg-section);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 8px var(--shadow-color);
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
         h1 {
             margin: 0 0 20px;
@@ -120,21 +158,23 @@
             height: 500px;
             object-fit: contain;
             object-position: center;
-            background-color: #f8f8f8;
+            background-color: var(--carousel-bg);
             border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 8px var(--shadow-color);
             flex-shrink: 0;
             display: block;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
         .carousel button {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: var(--button-bg);
             color: white;
             border: none;
             padding: 10px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
         .carousel button.prev {
             left: 10px;
@@ -171,6 +211,25 @@
         }
         .nav-links {
             display: block;
+        }
+        .dark-mode-toggle {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 6px;
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            z-index: 102;
+        }
+        .dark-mode-toggle:hover {
+            background-color: var(--nav-hover);
+            transform: translateY(-50%) scale(1.1);
         }
         @media (max-width: 600px) {
             .hamburger {
@@ -231,6 +290,9 @@
 	<p>We hope that you will discover lots of useful information here about Maple Farm and the surrounding area.</p>
         <!-- Navigation Menu -->
         <nav id="mainNav">
+            <button class="dark-mode-toggle" id="darkModeToggle" onclick="toggleDarkMode()" title="Toggle dark mode">
+                🌙
+            </button>
             <button class="hamburger" id="hamburger" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
@@ -329,8 +391,8 @@
             <p>This is the content for section 3. Feel free to customize this section with relevant information.</p>
 	    <div class="iframe-container" id="calendar-container">
               <div class="calendar-placeholder" id="calendar-placeholder">
-                <div style="display: flex; align-items: center; justify-content: center; min-height: 450px; background: #f5f5f5; border: 1px solid #ddd;">
-                  <div style="text-align: center; color: #666;">
+                <div style="display: flex; align-items: center; justify-content: center; min-height: 450px; background: var(--calendar-bg); border: 1px solid var(--border-color); transition: background-color 0.3s ease, border-color 0.3s ease;">
+                  <div style="text-align: center; color: var(--text-secondary);">
                     <div style="font-size: 24px; margin-bottom: 10px;">📅</div>
                     <div>Loading availability calendar...</div>
                   </div>
@@ -418,6 +480,37 @@
             });
         }, { rootMargin: '100px' });
 
+        // Dark mode toggle functionality
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const toggleButton = document.getElementById('darkModeToggle');
+            
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.removeAttribute('data-theme');
+                toggleButton.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                toggleButton.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Initialize dark mode from localStorage
+        function initDarkMode() {
+            const savedTheme = localStorage.getItem('theme');
+            const toggleButton = document.getElementById('darkModeToggle');
+            const html = document.documentElement;
+            
+            if (savedTheme === 'dark') {
+                html.setAttribute('data-theme', 'dark');
+                toggleButton.textContent = '☀️';
+            } else {
+                html.removeAttribute('data-theme');
+                toggleButton.textContent = '🌙';
+            }
+        }
+
         // Hamburger menu toggle
         function toggleMenu() {
             const hamburger = document.getElementById('hamburger');
@@ -462,7 +555,7 @@
             navLinks.forEach(link => {
                 link.style.backgroundColor = '';
                 if (link.getAttribute('href').slice(1) === current) {
-                    link.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+                    link.style.backgroundColor = 'var(--nav-active)';
                 }
             });
         }
@@ -576,6 +669,7 @@
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
+            initDarkMode(); // Initialize dark mode first
             showSlide(currentSlide);
             const calendarContainer = document.getElementById('calendar-container');
             if (calendarContainer) {
