@@ -515,6 +515,65 @@
             }
         }
 
+        // Trackpad/mouse wheel navigation for carousel with inertia control
+        let wheelAccumulator = 0;
+        let wheelTimeout = null;
+        let isWheelCooldown = false;
+        const wheelThreshold = 300; // Much higher threshold - need significant scroll to trigger
+        
+        function handleWheel(e) {
+            // Only work if carousel is visible on screen
+            const carousel = document.querySelector('.carousel');
+            if (carousel) {
+                const rect = carousel.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+                
+                if (isVisible) {
+                    e.preventDefault(); // Prevent page scroll
+                    
+                    // Skip if we're in cooldown period
+                    if (isWheelCooldown) {
+                        return;
+                    }
+                    
+                    // Accumulate scroll delta (reduced sensitivity)
+                    const delta = (e.deltaX || e.deltaY) * 0.5; // Reduce sensitivity by half
+                    wheelAccumulator += delta;
+                    
+                    // Clear existing timeout
+                    if (wheelTimeout) {
+                        clearTimeout(wheelTimeout);
+                    }
+                    
+                    // Check if we've accumulated enough scroll to trigger a slide
+                    if (Math.abs(wheelAccumulator) >= wheelThreshold) {
+                        if (wheelAccumulator > 0) {
+                            // Scroll right/down - next image
+                            nextSlide();
+                        } else {
+                            // Scroll left/up - previous image
+                            prevSlide();
+                        }
+                        
+                        // Reset everything and enter cooldown
+                        wheelAccumulator = 0;
+                        isWheelCooldown = true;
+                        
+                        // Long cooldown period to prevent multiple slides
+                        setTimeout(() => {
+                            isWheelCooldown = false;
+                        }, 800);
+                        
+                    } else {
+                        // Reset accumulator if no scroll for 300ms (longer timeout)
+                        wheelTimeout = setTimeout(() => {
+                            wheelAccumulator = 0;
+                        }, 300);
+                    }
+                }
+            }
+        }
+
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             showSlide(currentSlide);
@@ -524,11 +583,12 @@
             }
             updateActiveNav();
             
-            // Add touch listeners to carousel
+            // Add touch and wheel listeners to carousel
             const carousel = document.querySelector('.carousel');
             if (carousel) {
                 carousel.addEventListener('touchstart', handleTouchStart, { passive: true });
                 carousel.addEventListener('touchend', handleTouchEnd, { passive: true });
+                carousel.addEventListener('wheel', handleWheel, { passive: false });
             }
         });
     </script>
