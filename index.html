@@ -469,6 +469,24 @@
 
         window.addEventListener('scroll', updateActiveNav);
 
+        // Keyboard navigation for carousel
+        document.addEventListener('keydown', (e) => {
+            // Only work if carousel is visible on screen
+            const carousel = document.querySelector('.carousel');
+            if (carousel) {
+                const rect = carousel.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+                
+                if (isVisible) {
+                    if (e.key === 'ArrowLeft') {
+                        prevSlide();
+                    } else if (e.key === 'ArrowRight') {
+                        nextSlide();
+                    }
+                }
+            }
+        });
+
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             showSlide(currentSlide);
