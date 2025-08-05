@@ -487,6 +487,34 @@
             }
         });
 
+        // Touch/swipe navigation for carousel
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        function handleTouchStart(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        }
+        
+        function handleTouchEnd(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }
+        
+        function handleSwipe() {
+            const swipeThreshold = 50; // Minimum distance for swipe
+            const swipeDistance = touchEndX - touchStartX;
+            
+            if (Math.abs(swipeDistance) > swipeThreshold) {
+                if (swipeDistance > 0) {
+                    // Swipe right - go to previous image
+                    prevSlide();
+                } else {
+                    // Swipe left - go to next image
+                    nextSlide();
+                }
+            }
+        }
+
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             showSlide(currentSlide);
@@ -495,6 +523,13 @@
                 calendarObserver.observe(calendarContainer);
             }
             updateActiveNav();
+            
+            // Add touch listeners to carousel
+            const carousel = document.querySelector('.carousel');
+            if (carousel) {
+                carousel.addEventListener('touchstart', handleTouchStart, { passive: true });
+                carousel.addEventListener('touchend', handleTouchEnd, { passive: true });
+            }
         });
     </script>
 </body>
