@@ -638,46 +638,49 @@
                 const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
                 
                 if (isVisible) {
-                    e.preventDefault(); // Prevent page scroll
-                    
-                    // Skip if we're in cooldown period
-                    if (isWheelCooldown) {
-                        return;
-                    }
-                    
-                    // Accumulate scroll delta (reduced sensitivity)
-                    const delta = (e.deltaX || e.deltaY) * 0.5; // Reduce sensitivity by half
-                    wheelAccumulator += delta;
-                    
-                    // Clear existing timeout
-                    if (wheelTimeout) {
-                        clearTimeout(wheelTimeout);
-                    }
-                    
-                    // Check if we've accumulated enough scroll to trigger a slide
-                    if (Math.abs(wheelAccumulator) >= wheelThreshold) {
-                        if (wheelAccumulator > 0) {
-                            // Scroll right/down - next image
-                            nextSlide();
-                        } else {
-                            // Scroll left/up - previous image
-                            prevSlide();
+                    // Only handle horizontal scrolling (deltaX), ignore vertical (deltaY)
+                    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+                        e.preventDefault(); // Only prevent page scroll for horizontal movements
+                        
+                        // Skip if we're in cooldown period
+                        if (isWheelCooldown) {
+                            return;
                         }
                         
-                        // Reset everything and enter cooldown
-                        wheelAccumulator = 0;
-                        isWheelCooldown = true;
+                        // Only use horizontal delta for carousel navigation
+                        const delta = e.deltaX * 0.5; // Reduce sensitivity by half
+                        wheelAccumulator += delta;
                         
-                        // Long cooldown period to prevent multiple slides
-                        setTimeout(() => {
-                            isWheelCooldown = false;
-                        }, 800);
+                        // Clear existing timeout
+                        if (wheelTimeout) {
+                            clearTimeout(wheelTimeout);
+                        }
                         
-                    } else {
-                        // Reset accumulator if no scroll for 300ms (longer timeout)
-                        wheelTimeout = setTimeout(() => {
+                        // Check if we've accumulated enough scroll to trigger a slide
+                        if (Math.abs(wheelAccumulator) >= wheelThreshold) {
+                            if (wheelAccumulator > 0) {
+                                // Scroll right - next image
+                                nextSlide();
+                            } else {
+                                // Scroll left - previous image
+                                prevSlide();
+                            }
+                            
+                            // Reset everything and enter cooldown
                             wheelAccumulator = 0;
-                        }, 300);
+                            isWheelCooldown = true;
+                            
+                            // Long cooldown period to prevent multiple slides
+                            setTimeout(() => {
+                                isWheelCooldown = false;
+                            }, 800);
+                            
+                        } else {
+                            // Reset accumulator if no scroll for 300ms (longer timeout)
+                            wheelTimeout = setTimeout(() => {
+                                wheelAccumulator = 0;
+                            }, 300);
+                        }
                     }
                 }
             }
