@@ -36,15 +36,20 @@
         .container {
             max-width: 1200px;
             width: 100%;
-            padding: 20px;
+            padding: 10px;
             box-sizing: border-box;
             background-color: white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         nav {
             width: 100%;
-            background-color: #333;
-            overflow: hidden;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            overflow: visible;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
         }
         nav ul {
             list-style: none;
@@ -69,9 +74,15 @@
             white-space: nowrap; /* Prevents text from wrapping */
             overflow: hidden; /* Ensures no overflow */
             text-overflow: ellipsis; /* Adds "..." if text is too long */
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            margin: 2px;
+            font-weight: 500;
         }
         nav ul li a:hover {
-            background-color: #575757;
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         section {
             padding: 60px 0;
@@ -97,14 +108,23 @@
             max-width: 100%;
             overflow: hidden;
             margin: 0 auto;
+            width: 100%;
         }
         .carousel-images {
             display: flex;
             transition: transform 0.5s ease-in-out;
         }
         .carousel-images img {
-            max-width: 100%;
-            height: auto;
+            width: 100%;
+            min-width: 100%;
+            height: 500px;
+            object-fit: contain;
+            object-position: center;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            flex-shrink: 0;
+            display: block;
         }
         .carousel button {
             position: absolute;
@@ -122,20 +142,84 @@
         .carousel button.next {
             right: 10px;
         }
+        .hamburger {
+            display: none;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            position: relative;
+            margin-right: 10px;
+            z-index: 101;
+        }
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px 0;
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+        .nav-links {
+            display: block;
+        }
         @media (max-width: 600px) {
+            .hamburger {
+                display: block;
+            }
+            nav {
+                position: relative;
+                min-height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+            }
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 50px;
+                left: 0;
+                right: 0;
+                background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                z-index: 99;
+            }
+            .nav-links.active {
+                display: block;
+            }
             nav ul {
                 flex-direction: column; /* Stack menu items vertically */
-                align-items: center;    /* Ensure menu items are centered */
+                align-items: stretch;    /* Full width items */
             }
             nav ul li {
                 width: 100%; /* Make sure the menu item takes up full width */
                 max-width: none; /* Remove the max-width constraint on small screens */
+            }
+            nav ul li a {
+                padding: 16px 20px;
+                border-radius: 0;
             }
             h1 {
                 font-size: 24px;
             }
             p {
                 font-size: 16px;
+            }
+            .iframe-container {
+                padding-bottom: 70%; /* Moderate height for mobile */
+                height: auto;
+            }
+            .carousel-images img {
+                height: 300px; /* Smaller height for mobile */
             }
         }
     </style>
@@ -146,19 +230,26 @@
         <p>Welcome to Maple Farm.</p>
 	<p>We hope that you will discover lots of useful information here about Maple Farm and the surrounding area.</p>
         <!-- Navigation Menu -->
-        <nav>
-            <ul>
-                <li><a href="#section1">Photos</a></li>
-                <li><a href="#section2">Location and Map</a></li>
-                <li><a href="#section3">Reservations</a></li>
-                <li><a href="#section4">Food & Drink</a></li>
-            </ul>
-            <ul>
-                <li><a href="#section5">Attractions</a></li>
-                <li><a href="#section6">Useful Info</a></li>
-                <li><a href="#section7">Transport</a></li>
-                <li><a href="#section8">About the house</a></li>
-            </ul>
+        <nav id="mainNav">
+            <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links" id="navLinks">
+                <ul>
+                    <li><a href="#section1">📸 Photos</a></li>
+                    <li><a href="#section2">📍 Location</a></li>
+                    <li><a href="#section3">📅 Reservations</a></li>
+                    <li><a href="#section4">🍽️ Food & Drink</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#section5">🎯 Attractions</a></li>
+                    <li><a href="#section6">ℹ️ Useful Info</a></li>
+                    <li><a href="#section7">🚗 Transport</a></li>
+                    <li><a href="#section8">🏡 About</a></li>
+                </ul>
+            </div>
         </nav>
 
         <!-- Section 1 -->
@@ -236,8 +327,15 @@
         <section id="section3">
             <h2>Reservations</h2>
             <p>This is the content for section 3. Feel free to customize this section with relevant information.</p>
-	    <div class="iframe-container">
-	      <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=Asia%2FTokyo&showPrint=0&showCalendars=0&title=Maple%20Farm%20Availability&src=ZW4uamFwYW5lc2UjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&src=bmZocjRmMGdicThpZmxqMHNpZnRtbWQyYjBoNnJvczlAaW1wb3J0LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%230B8043&color=%23795548" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+	    <div class="iframe-container" id="calendar-container">
+              <div class="calendar-placeholder" id="calendar-placeholder">
+                <div style="display: flex; align-items: center; justify-content: center; min-height: 450px; background: #f5f5f5; border: 1px solid #ddd;">
+                  <div style="text-align: center; color: #666;">
+                    <div style="font-size: 24px; margin-bottom: 10px;">📅</div>
+                    <div>Loading availability calendar...</div>
+                  </div>
+                </div>
+              </div>
 	    </div>
         </section>
 
@@ -295,8 +393,91 @@
             showSlide(currentSlide);
         }
 
+        // Lazy load calendar
+        function loadCalendar() {
+            const placeholder = document.getElementById('calendar-placeholder');
+            const iframe = document.createElement('iframe');
+            const isMobile = window.innerWidth <= 600;
+            const height = isMobile ? 240 : 600;
+            const timestamp = Date.now();
+            iframe.src = `https://calendar.google.com/calendar/embed?height=${height}&wkst=2&ctz=Asia%2FTokyo&showPrint=0&showCalendars=0&mode=MONTH&showTabs=0&showNav=1&showDate=1&showTitle=1&title=Maple%20Farm%20Availability&src=ZW4uamFwYW5lc2UjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&src=bmZocjRmMGdicThpZmxqMHNpZnRtbWQyYjBoNnJvczlAaW1wb3J0LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%230B8043&color=%23795548&_=${timestamp}`;
+            iframe.style.cssText = `border:solid 1px #777; width:100%; height:${height}px;`;
+            iframe.frameBorder = '0';
+            iframe.scrolling = 'yes';
+            placeholder.parentNode.replaceChild(iframe, placeholder);
+            console.log('Calendar loaded with height:', height, 'Mobile:', isMobile);
+        }
+
+        // Intersection Observer for calendar lazy loading
+        const calendarObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    loadCalendar();
+                    calendarObserver.unobserve(entry.target);
+                }
+            });
+        }, { rootMargin: '100px' });
+
+        // Hamburger menu toggle
+        function toggleMenu() {
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu after clicking
+                    if (window.innerWidth <= 600) {
+                        document.getElementById('hamburger').classList.remove('active');
+                        document.getElementById('navLinks').classList.remove('active');
+                    }
+                }
+            });
+        });
+
+        // Active section highlighting
+        function updateActiveNav() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.style.backgroundColor = '';
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveNav);
+
         // Initialize
-        showSlide(currentSlide);
+        document.addEventListener('DOMContentLoaded', () => {
+            showSlide(currentSlide);
+            const calendarContainer = document.getElementById('calendar-container');
+            if (calendarContainer) {
+                calendarObserver.observe(calendarContainer);
+            }
+            updateActiveNav();
+        });
     </script>
 </body>
 </html>
