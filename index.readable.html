@@ -173,6 +173,49 @@
         p:last-child {
             margin-bottom: 0;
         }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        @media (min-width: 768px) {
+            .grid-container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        @media (min-width: 1200px) {
+            .grid-container {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+        .grid-item {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: left;
+            box-shadow: 0 2px 4px var(--shadow-color);
+            transition: all 0.3s ease;
+        }
+        .grid-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px var(--shadow-color);
+        }
+        .grid-item strong {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+            font-size: 16px;
+        }
+        .grid-item p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.4;
+            text-align: left;
+            max-width: none;
+        }
         .carousel {
             position: relative;
             max-width: 100%;
@@ -461,23 +504,32 @@
         <section id="section4">
             <a href="#top" class="back-to-top" title="Back to top">⬆️</a>
             <h2>Food & Drink</h2>
-            <p><strong>Asahikawa Food Court:</strong><br>
-            Open 9am to 8pm every day. Various dining options under one roof.</p>
-            
-            <p><strong>7-Eleven:</strong><br>
-            Convenience store located in the airport for quick snacks and essentials.</p>
-            
-            <p><strong>Seicomart:</strong><br>
-            Convenience store next to Chiyugaoka Station, only 5 minutes drive away.</p>
-            
-            <p><strong>Fried Chicken Stall:</strong><br>
-            Located next to Chiyugaoka Station for fresh, hot fried chicken.</p>
-            
-            <p><strong>Asahikawa Ramen:</strong><br>
-            Try the famous shoyu-based ramen with its signature thin layer of oil. Visit Asahikawa Ramen Village with 8 renowned shops including Aoba, Tenkin, and Santoka.</p>
-            
-            <p><strong>Local Specialties:</strong><br>
-            Experience Jingisukan (grilled lamb on convex metal grills), Hokkaido soup curry, and fresh local seafood and vegetables. The region is renowned for its high-quality agricultural products.</p>
+            <div class="grid-container">
+                <div class="grid-item">
+                    <strong>Asahikawa Food Court</strong>
+                    <p>Open 9am to 8pm every day. Various dining options under one roof.</p>
+                </div>
+                <div class="grid-item">
+                    <strong>7-Eleven</strong>
+                    <p>Convenience store located in the airport for quick snacks and essentials.</p>
+                </div>
+                <div class="grid-item">
+                    <strong>Seicomart</strong>
+                    <p>Convenience store next to Chiyugaoka Station, only 5 minutes drive away.</p>
+                </div>
+                <div class="grid-item">
+                    <strong>Fried Chicken Stall</strong>
+                    <p>Located next to Chiyugaoka Station for fresh, hot fried chicken.</p>
+                </div>
+                <div class="grid-item">
+                    <strong>Asahikawa Ramen</strong>
+                    <p>Try the famous shoyu-based ramen with its signature thin layer of oil. Visit Asahikawa Ramen Village with 8 renowned shops including Aoba, Tenkin, and Santoka.</p>
+                </div>
+                <div class="grid-item">
+                    <strong>Local Specialties</strong>
+                    <p>Experience Jingisukan (grilled lamb on convex metal grills), Hokkaido soup curry, and fresh local seafood and vegetables. The region is renowned for its high-quality agricultural products.</p>
+                </div>
+            </div>
         </section>
 
         <!-- Section5  -->
