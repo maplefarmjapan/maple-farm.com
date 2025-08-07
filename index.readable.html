@@ -130,6 +130,7 @@
             border: 1px solid var(--border-color);
             box-shadow: 0 4px 8px var(--shadow-color);
             transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
         }
         h1 {
             margin: 0 0 20px;
@@ -142,23 +143,25 @@
         }
         .back-to-top {
             position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
+            right: 20px;
+            top: 20px;
             text-decoration: none;
-            font-size: 24px;
+            font-size: 18px;
+            opacity: 0.3;
             color: var(--text-secondary);
-            transition: color 0.3s ease, transform 0.2s ease;
+            transition: opacity 0.3s ease, transform 0.2s ease;
             cursor: pointer;
+            z-index: 10;
         }
         .back-to-top:hover {
-            color: var(--text-primary);
-            transform: translateY(-50%) scale(1.2);
+            opacity: 0.7;
+            transform: scale(1.1);
         }
         @media (max-width: 600px) {
             .back-to-top {
-                left: 10px;
-                font-size: 20px;
+                right: 10px;
+                top: 10px;
+                font-size: 16px;
             }
         }
         p {
@@ -414,7 +417,8 @@
 
         <!-- Section 2 -->
         <section id="section2">
-            <h2><a href="#top" class="back-to-top" title="Back to top">⬆️</a>Location and Map</h2>
+            <a href="#top" class="back-to-top" title="Back to top">⬆️</a>
+            <h2>Location and Map</h2>
             <p>Maple Farm is perfectly located just 5 minutes drive from Asahikawa Airport, making it an ideal base for exploring the famous Blue Pond, Patchwork Road, and the beautiful flower fields of Biei.</p>
             <p>The property offers easy access to all major attractions while providing a peaceful countryside setting.</p>
 	    <div class="iframe-container">
@@ -424,9 +428,10 @@
 
         <!-- Section 3 -->
         <section id="section3">
-            <h2><a href="#top" class="back-to-top" title="Back to top">⬆️</a>Reservations</h2>
-            <p>Check availability and make your reservation using the calendar below.</p>
-            <p>We recommend booking early, especially during peak lavender season (mid-July to mid-August) and winter illumination period (November to April).</p>
+            <a href="#top" class="back-to-top" title="Back to top">⬆️</a>
+            <h2>Reservations</h2>
+            <p>Check availability using the calendar below.</p>
+            <p>We recommend booking early, especially during peak lavender season (mid-July to mid-August) and winter illumination and ski season (November to April).</p>
 	    <div class="iframe-container" id="calendar-container">
               <div class="calendar-placeholder" id="calendar-placeholder">
                 <div style="display: flex; align-items: center; justify-content: center; min-height: 450px; background: var(--calendar-bg); border: 1px solid var(--border-color); transition: background-color 0.3s ease, border-color 0.3s ease;">
@@ -441,7 +446,8 @@
 
         <!-- Alternative Booking Section -->
         <section id="section3b">
-            <h2><a href="#top" class="back-to-top" title="Back to top">⬆️</a>Direct Booking</h2>
+            <a href="#top" class="back-to-top" title="Back to top">⬆️</a>
+            <h2>Direct Booking</h2>
             <p style="text-align: center; margin-bottom: 30px;">Book directly through our reservation system for the best rates and instant confirmation.</p>
             <div style="text-align: center;">
                 <a href="https://worldwidebase.airhost.co/en/houses/527325" target="_blank" rel="noopener noreferrer" style="display: inline-block; background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); color: white; text-decoration: none; padding: 15px 30px; border-radius: 8px; font-size: 18px; font-weight: 600; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: all 0.3s ease;">
@@ -453,7 +459,8 @@
 
         <!-- Section 4 -->
         <section id="section4">
-            <h2><a href="#top" class="back-to-top" title="Back to top">⬆️</a>Food & Drink</h2>
+            <a href="#top" class="back-to-top" title="Back to top">⬆️</a>
+            <h2>Food & Drink</h2>
             <p><strong>Asahikawa Ramen:</strong><br>
             Try the famous shoyu-based ramen with its signature thin layer of oil. Visit Asahikawa Ramen Village with 8 renowned shops including Aoba, Tenkin, and Santoka.</p>
             
@@ -463,50 +470,54 @@
 
         <!-- Section5  -->
         <section id="section5">
-            <h2><a href="#top" class="back-to-top" title="Back to top">⬆️</a>Attractions</h2>
+            <a href="#top" class="back-to-top" title="Back to top">⬆️</a>
+            <h2>Attractions</h2>
             <p><strong>Blue Pond:</strong><br>
-            The world-famous cobalt-blue pond just 15 minutes away. Features winter illuminations from November to April (until 9pm). Parking 500 yen.</p>
+            The world-famous cobalt-blue pond is just 15 minutes drive away. Features winter illuminations from December to February</p>
             
             <p><strong>Patchwork Road:</strong><br>
             Scenic route featuring the iconic Ken & Mary Tree, Seven Stars Tree, and colorful agricultural fields creating a beautiful patchwork landscape.</p>
             
             <p><strong>Asahiyama Zoo:</strong><br>
-            Famous for penguin walks daily at 11:00 & 14:30, interactive seal tanks, and up-close animal encounters. 40 minutes by bus from Asahikawa Station.</p>
+            Famous for daily penguin walks during the Winter, interactive seal tanks, and up-close animal encounters, the zoo is only 20 minutes drive away.</p>
             
             <p><strong>Flower Fields:</strong><br>
-            Peak lavender season mid-July to mid-August. Visit Shikisai Hill with walking trails and tractor-pulled wagon rides.</p>
+            Peak lavender season is from mid-July to mid-August. Shikisai Hill is only 20 minutes drive and has walking trails and tractor-pulled wagon rides.</p>
         </section>
 	
 	<!-- Section 6 -->
         <section id="section6">
-            <h2><a href="#top" class="back-to-top" title="Back to top">⬆️</a>Useful Info</h2>
+            <a href="#top" class="back-to-top" title="Back to top">⬆️</a>
+            <h2>Useful Info</h2>
             <p><strong>Best Seasons:</strong><br>
-            Summer (July-August) for flower fields and mild weather. Winter (December-February) for Blue Pond illuminations and Asahikawa Winter Festival.</p>
+            Summer (July-August) for flower fields and mild weather. Winter (December-February) for skiiing, the Blue Pond illuminations and Asahikawa Winter Festival.</p>
             
             <p><strong>Cultural Sites:</strong><br>
             Asahikawa City Museum showcasing Ainu culture, Otokoyama Sake Brewery for tastings, and traditional Hokkaido handicraft shops.</p>
             
             <p><strong>Weather:</strong><br>
-            Summer temperatures 15-25°C (59-77°F). Winter activities include penguin walks and snow festivals.</p>
+            Summer temperatures 15-35°C (59-95°F). Winter temperatures -15-10°C (5-50°F) with many days of powder snow and blue skies.</p>
         </section>
 
         <!-- Section 7 -->
         <section id="section7">
-            <h2><a href="#top" class="back-to-top" title="Back to top">⬆️</a>Transport</h2>
+            <a href="#top" class="back-to-top" title="Back to top">⬆️</a>
+            <h2>Transport</h2>
             <p><strong>From Asahikawa Airport:</strong><br>
-            Direct Lavender-go bus (15 minutes, 380 yen) runs every 1-2 hours. Taxi or rental car also available (15 minutes, 11km).</p>
+            Taxi (5 minutes; &lt;&yen;1,500) or rental cars available at the airport.</p>
             
             <p><strong>Getting Around:</strong><br>
             Car rental recommended for maximum flexibility accessing remote attractions. Bicycle rentals available: 200 yen/hour regular, 600 yen/hour electric bikes.</p>
             
-            <p><strong>Key Distances:</strong><br>
-            Blue Pond (15 min), Asahiyama Zoo (40 min), Furano (1h 15min), Shikisai Hill (35 min).</p>
+            <p><strong>Key Distances By Car:</strong><br>
+            Blue Pond (15 min), Asahiyama Zoo (20 min), Furano (1h), Shikisai Hill (20 min).</p>
         </section>
 
         <!-- Section 8 -->
         <section id="section8">
-            <h2><a href="#top" class="back-to-top" title="Back to top">⬆️</a>Ski Resorts</h2>
-            <p><strong>Kamui Ski Links (15 minutes):</strong><br>
+            <a href="#top" class="back-to-top" title="Back to top">⬆️</a>
+            <h2>Ski Resorts</h2>
+            <p><strong>Kamui Ski Links (40 minutes):</strong><br>
             The closest ski resort to Maple Farm, featuring 25 courses across beginner to advanced levels. Known for excellent powder snow and night skiing until 9pm. Lift tickets: 4,500 yen/day adults.</p>
             
             <p><strong>Asahidake (45 minutes):</strong><br>
@@ -515,7 +526,7 @@
             <p><strong>Kurodake (1 hour):</strong><br>
             Part of Daisetsuzan National Park with spectacular alpine scenery. Offers both groomed runs and off-piste opportunities. Connected to Asahidake via ropeway system for mountain exploration.</p>
             
-            <p><strong>Canmore Ski Village (Higashikawa) (30 minutes):</strong><br>
+            <p><strong>Canmore Ski Village (Higashikawa) (20 minutes):</strong><br>
             A smaller, family-friendly ski area perfect for beginners and intermediate skiers. Affordable lift tickets and relaxed atmosphere. Great for families with children learning to ski.</p>
             
             <p><strong>Furano Ski Resort (1 hour 15 minutes):</strong><br>
@@ -524,7 +535,8 @@
 
         <!-- Section 9 -->
         <section id="section9">
-            <h2><a href="#top" class="back-to-top" title="Back to top">⬆️</a>About Maple Farm</h2>
+            <a href="#top" class="back-to-top" title="Back to top">⬆️</a>
+            <h2>About Maple Farm</h2>
             <p>Maple Farm offers comfortable accommodation in the heart of Hokkaido's most scenic region. Located just minutes from Asahikawa Airport and Biei's famous attractions, our property provides the perfect blend of convenience and tranquility.</p>
             
             <p>Whether you're here for the summer flower fields, winter illuminations, or year-round cultural experiences, Maple Farm serves as your ideal base for exploring all that this beautiful region has to offer.</p>
