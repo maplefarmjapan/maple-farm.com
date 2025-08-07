@@ -40,23 +40,23 @@ sed 's/ >/>/g' | \
 # Remove spaces after opening <
 sed 's/< /</g' | \
 # Final cleanup - remove any remaining multiple spaces
-tr -s ' ' > index.min.html
+tr -s ' ' > index.html
 
 # Add newline at end of file
-echo >> index.min.html
+echo >> index.html
 
 echo "Minification complete!"
 
 # Show file sizes for comparison
 echo "File size comparison:"
 echo "Original: $(wc -c < index.readable.html) bytes"
-echo "Minified: $(wc -c < index.min.html) bytes"
+echo "Minified: $(wc -c < index.html) bytes"
 
 # Calculate compression ratio
 original_size=$(wc -c < index.readable.html)
-minified_size=$(wc -c < index.min.html)
+minified_size=$(wc -c < index.html)
 reduction=$(echo "scale=1; ($original_size - $minified_size) * 100 / $original_size" | bc -l 2>/dev/null || echo "N/A")
 
 echo "Size reduction: ${reduction}%"
 
-echo "✅ index.min.html created successfully!"
+echo "✅ index.html created successfully!"

@@ -34,7 +34,7 @@ html-minifier-terser \
     --use-short-doctype \
     --minify-css true \
     --minify-js true \
-    --output index.min.html \
+    --output index.html \
     index.readable.html
 
 if [ $? -eq 0 ]; then
@@ -43,11 +43,11 @@ if [ $? -eq 0 ]; then
     # Show file sizes for comparison
     echo "File size comparison:"
     echo "Original: $(wc -c < index.readable.html) bytes"
-    echo "Minified: $(wc -c < index.min.html) bytes"
+    echo "Minified: $(wc -c < index.html) bytes"
     
     # Calculate compression ratio
     original_size=$(wc -c < index.readable.html)
-    minified_size=$(wc -c < index.min.html)
+    minified_size=$(wc -c < index.html)
     reduction=$(echo "scale=1; ($original_size - $minified_size) * 100 / $original_size" | bc -l 2>/dev/null || echo "N/A")
     
     echo "Size reduction: ${reduction}%"
