@@ -366,8 +366,19 @@
                 font-size: 16px;
             }
             .iframe-container {
-                padding-bottom: 70%; /* Moderate height for mobile */
+                max-width: 100%; /* Use full available width */
+                margin: 0; /* Remove margins */
+                padding-bottom: 120%; /* Taller aspect ratio for better calendar view on mobile */
                 height: auto;
+            }
+            #calendar-container {
+                padding-bottom: 100%; /* Reduced height to minimize blank space */
+            }
+            section {
+                padding: 40px 5px; /* Minimal horizontal padding on mobile */
+            }
+            #section3 {
+                padding: 40px 2px; /* Even less padding for calendar section */
             }
             .carousel-images img {
                 height: 300px; /* Smaller height for mobile */
@@ -394,13 +405,13 @@
                 <ul>
                     <li><a href="#section1">📸 Photos</a></li>
                     <li><a href="#section2">📍 Location</a></li>
-                    <li><a href="#section3">📅 Reservations</a></li>
+                    <li><a href="#section3">📅 Availability</a></li>
                     <li><a href="#section4">🍽️ Food & Drink</a></li>
                 </ul>
                 <ul>
                     <li><a href="#section5">🎯 Attractions</a></li>
                     <li><a href="#section6">ℹ️ Useful Info</a></li>
-                    <li><a href="#section7">🚗 Transport</a></li>
+                    <li><a href="#section7">🚗 Transport and Access</a></li>
                     <li><a href="#section8">⛷️ Ski Resorts</a></li>
                     <li><a href="#section9">🏡 About</a></li>
                 </ul>
@@ -471,7 +482,7 @@
         <!-- Section 2 -->
         <section id="section2">
             <a href="#top" class="back-to-top" title="Back to top">⬆️</a>
-            <h2>Location and Map</h2>
+            <h2>Location</h2>
             <p>Maple Farm is perfectly located just 5 minutes drive from Asahikawa Airport, making it an ideal base for exploring the famous Blue Pond, Patchwork Road, and the beautiful flower fields of Biei.</p>
             <p>The property offers easy access to all major attractions while providing a peaceful countryside setting.</p>
 	    <div class="iframe-container">
@@ -482,7 +493,7 @@
         <!-- Section 3 -->
         <section id="section3">
             <a href="#top" class="back-to-top" title="Back to top">⬆️</a>
-            <h2>Reservations</h2>
+            <h2>Availability</h2>
             <p>Check availability using the calendar below.</p>
             <p>We recommend booking early, especially during peak lavender season (mid-July to mid-August) and winter illumination and ski season (November to April).</p>
 	    <div class="iframe-container" id="calendar-container">
@@ -623,7 +634,7 @@
         <!-- Section 7 -->
         <section id="section7">
             <a href="#top" class="back-to-top" title="Back to top">⬆️</a>
-            <h2>Transport</h2>
+            <h2>Transport and Access</h2>
             <p><strong>From Asahikawa Airport:</strong><br>
             Taxi (5 minutes; &lt;&yen;1,500) or rental cars available at the airport.</p>
             
